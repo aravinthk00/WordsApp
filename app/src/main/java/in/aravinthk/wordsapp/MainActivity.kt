@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = LetterAdapter()
     }
 
-    private fun setIcon(menuItem : MenuItem){
+    private fun setIcon(menuItem : MenuItem?){
 
         if(menuItem == null)
             return
@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.layout_menu, menu)
+        val layoutButton = menu?.findItem(R.id.action_switch_layout)
+
+        setIcon(layoutButton)
         return true
     }
 

@@ -14,7 +14,7 @@ class LetterAdapter(): RecyclerView.Adapter<LetterAdapter.LetterHolder>() {
 
     private val letterList = ('A'). rangeTo ('Z').toList()
 
-    class LetterHolder(private val itemView: View): RecyclerView.ViewHolder(itemView){
+    class LetterHolder( val view: View): RecyclerView.ViewHolder(view){
         val button = itemView.findViewById<Button>(R.id.button_item)
     }
 
@@ -30,12 +30,12 @@ class LetterAdapter(): RecyclerView.Adapter<LetterAdapter.LetterHolder>() {
 
     override fun onBindViewHolder(holder: LetterHolder, position: Int) {
 
-        var item = letterList[position]
+        val item = letterList[position]
         holder.button.text = item.toString()
 
         holder.button.setOnClickListener {
-            val  context = holder.itemView.context
-            val intent = Intent(context,DetailActivity::class.java)
+            val context = holder.view.context
+            val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(LETTER,holder.button.text.toString())
             context.startActivity(intent)
         }
