@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.util.rangeTo
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import `in`.aravinthk.wordsapp.DetailActivity.Companion.LETTER
 
@@ -33,11 +34,15 @@ class LetterAdapter(): RecyclerView.Adapter<LetterAdapter.LetterHolder>() {
         val item = letterList[position]
         holder.button.text = item.toString()
 
-        holder.button.setOnClickListener {
-            val context = holder.view.context
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(LETTER,holder.button.text.toString())
-            context.startActivity(intent)
-        }
+//        holder.button.setOnClickListener {
+//            val context = holder.view.context
+//            val intent = Intent(context, DetailActivity::class.java)
+//            intent.putExtra(LETTER,holder.button.text.toString())
+//            context.startActivity(intent)
+//        }
+
+        val action = LetterListFragmentDirections.actionLetterListFragmentToWordListFragment(letter = holder.button.text.toString())
+
+        holder.view.findNavController().navigate(action)
     }
 }
