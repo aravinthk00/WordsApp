@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import `in`.aravinthk.wordsapp.databinding.FragmentWordListBinding
 
@@ -12,7 +13,6 @@ class WordListFragment: Fragment() {
 
     private var _binding : FragmentWordListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
 
     private lateinit var letterId : String
 
@@ -43,8 +43,8 @@ class WordListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = binding.recyclerView
-
+        val recyclerView: RecyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = WordAdapter(letterId , requireContext())
 
     }

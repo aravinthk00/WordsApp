@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private var isLinearLayoutManager = true
-    private lateinit var recyclerView : RecyclerView
+    //private var isLinearLayoutManager = true
+    //private lateinit var recyclerView : RecyclerView
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,46 +47,46 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun chooseLayout() {
-        if(isLinearLayoutManager){
-            recyclerView.layoutManager = LinearLayoutManager(this)
-        }
-        else{
-            recyclerView.layoutManager = GridLayoutManager(this, 4)
-        }
-        recyclerView.adapter = LetterAdapter()
-    }
+//    private fun chooseLayout() {
+//        if(isLinearLayoutManager){
+//            recyclerView.layoutManager = LinearLayoutManager(this)
+//        }
+//        else{
+//            recyclerView.layoutManager = GridLayoutManager(this, 4)
+//        }
+//        recyclerView.adapter = LetterAdapter()
+//    }
+//
+//    private fun setIcon(menuItem : MenuItem?){
+//
+//        if(menuItem == null)
+//            return
+//
+//        if(isLinearLayoutManager)
+//            ContextCompat.getDrawable(this, R.drawable.ic_grid_layout)
+//        else
+//            ContextCompat.getDrawable(this,R.drawable.ic_linear_layout)
+//    }
 
-    private fun setIcon(menuItem : MenuItem?){
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.layout_menu, menu)
+//        val layoutButton = menu?.findItem(R.id.action_switch_layout)
+//
+//        setIcon(layoutButton)
+//        return true
+//    }
 
-        if(menuItem == null)
-            return
-
-        if(isLinearLayoutManager)
-            ContextCompat.getDrawable(this, R.drawable.ic_grid_layout)
-        else
-            ContextCompat.getDrawable(this,R.drawable.ic_linear_layout)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.layout_menu, menu)
-        val layoutButton = menu?.findItem(R.id.action_switch_layout)
-
-        setIcon(layoutButton)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.action_switch_layout -> {
-                isLinearLayoutManager = !isLinearLayoutManager
-
-                chooseLayout()
-                setIcon(item)
-
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when(item.itemId){
+//            R.id.action_switch_layout -> {
+//                isLinearLayoutManager = !isLinearLayoutManager
+//
+//                chooseLayout()
+//                setIcon(item)
+//
+//                return true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 }

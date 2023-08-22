@@ -2,6 +2,8 @@ package `in`.aravinthk.wordsapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,7 @@ import `in`.aravinthk.wordsapp.databinding.FragmentLetterListBinding
 
 class LetterListFragment : Fragment() {
 
-    private var _binding : FragmentLetterListBinding? = null;
+    private var _binding: FragmentLetterListBinding? = null;
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private var isLinearLayoutManager = true
@@ -41,39 +43,46 @@ class LetterListFragment : Fragment() {
         chooseLayout()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.layout_menu, menu)
+
+        val layoutButton = menu.findItem(R.id.action_switch_layout)
+        setIcon(layoutButton)
+    }
+
     private fun chooseLayout() {
 
-        if(isLinearLayoutManager){
+        if (isLinearLayoutManager) {
             recyclerView.layoutManager = LinearLayoutManager(context)
-        }
-        else{
+        } else {
             recyclerView.layoutManager = GridLayoutManager(context, 4)
         }
         recyclerView.adapter = LetterAdapter()
     }
 
-    private fun setIcon(menuItem: MenuItem){
+    private fun setIcon(menuItem: MenuItem) {
 
-        if( menuItem == null)
+        if (menuItem == null)
             return
 
-        if(isLinearLayoutManager){
-            ContextCompat.getDrawable(requireContext(),R.drawable.ic_linear_layout)
-        }
-        else{
-            ContextCompat.getDrawable(requireContext(), R.drawable.ic_grid_layout)
-        }
+        menuItem.icon =
+            if (isLinearLayoutManager) {
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_linear_layout)
+            } else {
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_grid_layout)
+            }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.action_switch_layout -> {
                 isLinearLayoutManager = !isLinearLayoutManager
                 chooseLayout()
                 setIcon(item)
                 return true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
